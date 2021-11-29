@@ -111,7 +111,7 @@ export default {
             await this['user/login'](this.loginForm)
             this.$router.push('/')
           } catch (error) {
-            console.log(1)
+            console.log(error)
           } finally {
             this.loading = false
           }

@@ -1,3 +1,10 @@
+/*
+ * @Author: CookChopper
+ * @Date: 2021-11-23 21:36:40
+ * @LastEditTime: 2021-11-29 16:51:54
+ * @LastEditors: CookChopper
+ * @Description:main.js入口文件
+ */
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
@@ -14,6 +21,14 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+
+/**
+ * @description: 注册自定义指令
+ */
+import * as directives from '@/directives'
+Object.keys(directives).forEach(key => {
+  Vue.directive(key, directives[key])
+})
 
 /**
  * If you don't want to use mock-server

@@ -115,3 +115,8 @@ export function param2Obj(url) {
   })
   return obj
 }
+
+export function CheckTimeout(timeStamp, timeout) {
+  const currentTime = Date.now()
+  return (currentTime - timeStamp) / 1000 > timeout
+}
