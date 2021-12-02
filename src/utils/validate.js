@@ -1,3 +1,10 @@
+/*
+ * @Author: CookChopper
+ * @Date: 2021-11-23 21:36:40
+ * @LastEditTime: 2021-12-01 14:44:56
+ * @LastEditors: CookChopper
+ * @Description: 公共函数库
+ */
 /**
  * Created by PanJiaChen on 16/11/18.
  */
@@ -22,4 +29,16 @@ export function validUsername(str) {
 export function validMobile(data) {
   const reg = /^1[3-9]\d{9}$/
   return reg.test(data)
+}
+
+export function arrayToTree(list, RootValue) {
+  const arr = []
+  list && list.forEach(item => {
+    if (item.pid === RootValue) {
+      const children = arrayToTree(list, item.id)
+      item['children'] = children
+      arr.push(item)
+    }
+  })
+  return arr
 }
