@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+import * as echarts from 'echarts'
 export default {
   // 页面渲染完毕执行
   mounted() {
