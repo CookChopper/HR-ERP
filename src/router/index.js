@@ -1,7 +1,7 @@
 /*
  * @Author: CookChopper
  * @Date: 2021-11-23 21:36:40
- * @LastEditTime: 2021-11-30 17:23:24
+ * @LastEditTime: 2021-12-17 22:00:15
  * @LastEditors: CookChopper
  * @Description: 路由
  */
@@ -21,6 +21,7 @@ import attendancesRouter from './modules/attendances'
 import salarysRouter from './modules/salarys'
 import settingRouter from './modules/setting'
 import socialRouter from './modules/social'
+import users from './modules/user'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -64,14 +65,23 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
   },
-
+  {
+    path: '/import',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '',
+      component: () => import('@/import'),
+      meta: { title: '员工导入' }
+    }]
+  }
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+
 ]
 
 // 临时动态路由
@@ -83,12 +93,13 @@ export const asyncRoutes = [
   attendancesRouter,
   salarysRouter,
   settingRouter,
-  socialRouter]
+  socialRouter,
+  users]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: [...constantRoutes, ...asyncRoutes]
+  routes: constantRoutes
 })
 
 const router = createRouter()

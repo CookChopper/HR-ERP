@@ -5,9 +5,21 @@
       江苏传智播客教育科技股份有限公司
       <span class="breadBtn">体验版</span>
     </div>
-    <!-- <breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
+      <screen class="screenFull" />
+      <theme-picker />
+      <el-tooltip class="item" effect="dark" content="切换界面语言" placement="bottom">
+        <el-dropdown trigger="click" @command="changeLanguage">
+          <span class="el-dropdown-link">
+            <svg-icon icon-class="language" style="color:#fff;margin-right:10px" />
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="zh" :disabled="'zh'===$i18n.locale">中文</el-dropdown-item>
+            <el-dropdown-item command="en" :disabled="'en'===$i18n.locale">英文</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-tooltip>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img v-imagerror="defaultImg" :src="staffPhoto" class="user-avatar">
@@ -37,7 +49,7 @@
 import { mapGetters } from 'vuex'
 // import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import Cookies from 'js-cookie'
 export default {
   components: {
     // Breadcrumb,
@@ -74,6 +86,12 @@ export default {
       }
       // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       // await this.$store.dispatch('user')
+    },
+    changeLanguage(type) {
+      // alert(type)
+      Cookies.set('language', type)
+      this.$i18n.locale = type
+      location.reload()
     }
   }
 }
@@ -127,6 +145,17 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
+
+    .screenFull{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      color: #fff;
+      margin-right: 10px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
 
     &:focus {
       outline: none;

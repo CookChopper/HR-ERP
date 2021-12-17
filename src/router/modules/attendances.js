@@ -1,23 +1,37 @@
-/*
- * @Author: CookChopper
- * @Date: 2021-11-30 16:35:00
- * @LastEditTime: 2021-11-30 17:00:07
- * @LastEditors: CookChopper
- * @Description: 考勤路由
- */
+
 import Layout from '@/layout'
 
-export default {
+const attendRouter = {
   path: '/attendances',
-  name: 'attendances',
   component: Layout,
-  children: [{
-    path: '',
-    component: () => import('@/views/attendances/index.vue'),
-    meta: {
-      title: '考勤',
-      icon: 'form'
+  name: 'attendances',
+  children: [
+    {
+      path: '',
+      component: () => import('@/views/attendances'),
+      name: 'attendances',
+      meta: {
+        title: '考勤',
+        icon: 'excel' }
+    },
+    {
+      path: 'archiving',
+      component: () => import('@/views/attendances/historical'),
+      name: 'archiving',
+      hidden: true,
+      meta: {
+        title: '归档'
+      }
+    },
+    {
+      path: 'report/:month',
+      component: () => import('@/views/attendances/report'),
+      name: 'reports',
+      hidden: true,
+      meta: {
+        title: '报表'
+      }
     }
-  }]
-
+  ]
 }
+export default attendRouter

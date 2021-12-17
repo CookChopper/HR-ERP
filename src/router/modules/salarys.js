@@ -1,23 +1,56 @@
-/*
- * @Author: CookChopper
- * @Date: 2021-11-30 16:35:00
- * @LastEditTime: 2021-11-30 16:59:43
- * @LastEditors: CookChopper
- * @Description: 工资路由
- */
+
 import Layout from '@/layout'
 
-export default {
+const salaryRouter = {
   path: '/salarys',
-  name: 'salarys',
   component: Layout,
-  children: [{
-    path: '',
-    component: () => import('@/views/salarys/index.vue'),
-    meta: {
-      title: '工资',
-      icon: 'money'
+  name: 'salarys',
+  children: [
+    {
+      path: '',
+      component: () => import('@/views/salarys'),
+      name: 'salarys',
+      meta: {
+        title: '工资',
+        icon: 'money'
+      }
+    },
+    {
+      path: 'setting',
+      component: () => import('@/views/salarys/setting'),
+      name: 'salarysSetting',
+      hidden: true,
+      meta: {
+        title: '设置'
+      }
+    },
+    {
+      path: 'details/:yearMonth/:id',
+      component: () => import('@/views/salarys/detail'),
+      name: 'salarysDetails',
+      hidden: true,
+      meta: {
+        title: '详情'
+      }
+    },
+    {
+      path: 'historicalArchiving',
+      component: () => import('@/views/salarys/historical'),
+      name: 'salarysHistorical',
+      hidden: true,
+      meta: {
+        title: '历史归档'
+      }
+    },
+    {
+      path: 'monthStatement',
+      component: () => import('@/views/salarys/month'),
+      name: 'salarysMonthStatement',
+      hidden: true,
+      meta: {
+        title: '月报表'
+      }
     }
-  }]
-
+  ]
 }
+export default salaryRouter

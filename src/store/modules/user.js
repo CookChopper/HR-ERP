@@ -1,13 +1,14 @@
 /*
  * @Author: CookChopper
  * @Date: 2021-11-23 21:36:40
- * @LastEditTime: 2021-11-29 21:41:54
+ * @LastEditTime: 2021-12-14 14:56:36
  * @LastEditors: CookChopper
  * @Description: vuex中的user数据
  */
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { login, getUserInfo, getUserDetailById } from '@/api/user'
 import { setTimeStamp } from '@/utils/auth'
+import { resetRouter } from '@/router'
 const state = {
   token: getToken(),
   userInfo: {}
@@ -48,6 +49,9 @@ const actions = {
   async logout(context) {
     context.commit('removeToken')
     context.commit('removeUserInfo')
+    // 重置路由
+    resetRouter()
+    context.commit('permission/setRoutes', [], { root: true })
   }
 }
 

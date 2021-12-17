@@ -1,7 +1,7 @@
 /*
  * @Author: CookChopper
  * @Date: 2021-11-23 21:36:40
- * @LastEditTime: 2021-12-01 14:44:56
+ * @LastEditTime: 2021-12-06 23:05:54
  * @LastEditors: CookChopper
  * @Description: 公共函数库
  */
@@ -36,7 +36,9 @@ export function arrayToTree(list, RootValue) {
   list && list.forEach(item => {
     if (item.pid === RootValue) {
       const children = arrayToTree(list, item.id)
-      item['children'] = children
+      if (children.length > 0) {
+        item['children'] = children
+      }
       arr.push(item)
     }
   })

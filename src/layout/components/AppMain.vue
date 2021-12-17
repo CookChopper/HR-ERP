@@ -1,5 +1,6 @@
 <template>
   <section class="app-main">
+    <TagsView />
     <transition name="fade-transform" mode="out-in">
       <router-view :key="key" />
     </transition>
@@ -7,8 +8,10 @@
 </template>
 
 <script>
+import TagsView from './TagsView/index.vue'
 export default {
   name: 'AppMain',
+  components: { TagsView },
   computed: {
     key() {
       return this.$route.path
